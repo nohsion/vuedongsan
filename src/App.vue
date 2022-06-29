@@ -12,23 +12,11 @@
       <a v-for="(menu, i) in menus" :key="i">{{ menu }}</a>
     </div>
 
-    <div>
-      <img src="./assets/room0.jpg" class="room-img">
-      <h4 @click="isOpenModal = true">{{ products[0] }}</h4>
-      <p>{{ prices[0] }} 만원</p>
-      <button @click="reports[0]++">허위매물신고</button> <span>신고수: {{ reports[0] }}</span>
-    </div>
-    <div>
-      <img src="./assets/room1.jpg" class="room-img">
-      <h4 @click="isOpenModal = true">{{ products[1] }}</h4>
-      <p>{{ prices[1] }} 만원</p>
-      <button @click="reports[1]++">허위매물신고</button> <span>신고수: {{ reports[1] }}</span>
-    </div>
-    <div>
-      <img src="./assets/room2.jpg" class="room-img">
-      <h4 @click="isOpenModal = true">{{ products[2] }}</h4>
-      <p>{{ prices[2] }} 만원</p>
-      <button @click="reports[2]++">허위매물신고</button> <span>신고수: {{ reports[2] }}</span>
+    <div v-for="item in oneRooms" :key= item.id>
+      <img :src="item.image" class="room-img">
+      <h4 @click="isOpenModal = true">{{item.title}}</h4>
+      <p>{{item.content}}</p>
+      <p>{{item.price}} 원</p>
     </div>
 
   </div>
@@ -36,12 +24,14 @@
 
 <script>
 
+import data from './data/post.js'
+
 export default {
   name: "App",
   data() {
     return {
+      oneRooms: data,
       isOpenModal: false,
-      reports: [0, 0, 0],
       menus: ["Home", "Shop", "About"],
       prices: [70, 80, 90],
       products: ["역삼동원룸", "천호동원룸", "마포구원룸"],
